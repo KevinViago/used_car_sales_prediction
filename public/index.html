@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediksi Mobil Bekas — Machine Learning</title>
+  <meta name="description" content="Prediksi apakah mobil bekas akan cepat terjual atau lama terjual menggunakan perbandingan algoritma Naive Bayes, Decision Tree, dan KNN langsung di browser.">
+  <meta name="keywords" content="prediksi mobil bekas, machine learning, naive bayes, decision tree, knn, klasifikasi">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ═══ Animated Background ═══ -->
+  <div class="bg-blobs">
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+  </div>
+
+  <!-- ═══ Loading Overlay ═══ -->
+  <div class="model-loading" id="loading-overlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Memuat Model Klasifikasi...</div>
+    <div class="loading-sub">Menginisialisasi Naive Bayes, Decision Tree, dan KNN</div>
+  </div>
+
+  <!-- ═══ Main Content ═══ -->
+  <div class="container">
+
+    <!-- ── Hero ── -->
+    <section class="glass hero">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Machine Learning Classification
+      </div>
+      <h1>Prediksi Penjualan Mobil Bekas</h1>
+      <p>Bandingkan 3 algoritma — <strong>Naive Bayes</strong>, <strong>Decision Tree</strong>, dan <strong>KNN</strong> — untuk memprediksi apakah mobil bekas akan <strong>Cepat Terjual</strong> atau <strong>Lama Terjual</strong>.</p>
+    </section>
+
+    <!-- ── Form Prediksi ── -->
+    <section class="glass form-card">
+      <h2 class="section-title">
+        <span class="icon">🚗</span>
+        Data Mobil
+      </h2>
+
+      <form id="predict-form" autocomplete="off">
+        <div class="form-grid">
+
+          <!-- Brand -->
+          <div class="form-group">
+            <label for="input-brand">Merek Mobil</label>
+            <select id="input-brand" required>
+              <option value="">Pilih Merek</option>
+            </select>
+          </div>
+
+          <!-- Transmission -->
+          <div class="form-group">
+            <label for="input-transmission">Transmisi</label>
+            <select id="input-transmission" required>
+              <option value="">Pilih Transmisi</option>
+            </select>
+          </div>
+
+          <!-- Year -->
+          <div class="form-group">
+            <label for="input-year">Tahun Pembuatan</label>
+            <select id="input-year" required>
+              <option value="">Pilih Tahun</option>
+            </select>
+          </div>
+
+          <!-- Mileage -->
+          <div class="form-group">
+            <label for="input-mileage">Kilometer (km)</label>
+            <select id="input-mileage" required>
+              <option value="">Pilih Kilometer</option>
+            </select>
+          </div>
+
+          <!-- Price -->
+          <div class="form-group">
+            <label for="input-price">Harga (Rp)</label>
+            <select id="input-price" required>
+              <option value="">Pilih Harga</option>
+            </select>
+          </div>
+
+          <!-- Target -->
+          <div class="form-group">
+            <label for="input-target">Target</label>
+            <select id="input-target" required>
+              <option value="">Pilih Target</option>
+            </select>
+          </div>
+
+          <!-- Mileage Category -->
+          <div class="form-group">
+            <label for="input-mileage-cat">Mileage Category</label>
+            <select id="input-mileage-cat" required>
+              <option value="">Pilih Mileage Category</option>
+            </select>
+          </div>
+
+          <!-- Price Category -->
+          <div class="form-group">
+            <label for="input-price-cat">Price Category</label>
+            <select id="input-price-cat" required>
+              <option value="">Pilih Price Category</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div style="margin-top: 24px;">
+          <button type="submit" class="btn-predict" id="btn-predict">
+            <div class="spinner"></div>
+            <span class="btn-text">🔮 Prediksi Sekarang</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ── Hasil Prediksi ── -->
+    <section class="glass result-section" id="result-section" style="display:none;">
+      <!-- Dynamically rendered by app.js -->
+    </section>
+
+    <!-- ── Akurasi Model ── -->
+    <section class="glass accuracy-section">
+      <h2 class="section-title">
+        <span class="icon">📈</span>
+        Perbandingan Akurasi Model
+      </h2>
+
+      <div class="accuracy-grid" id="accuracy-grid">
+        <!-- Dynamically rendered by app.js -->
+      </div>
+
+      <div class="chart-container">
+        <canvas id="accuracy-chart"></canvas>
+      </div>
+    </section>
+
+    <!-- ── Footer ── -->
+    <footer class="footer">
+      <p>Prediksi Mobil Bekas &copy; 2026 &mdash; Naive Bayes, Decision Tree, KNN</p>
+      <p style="margin-top:6px;">Semua model dijalankan sepenuhnya di browser — data Anda tidak dikirim ke server manapun.</p>
+    </footer>
+
+  </div>
+
+  <!-- ═══ Toast ═══ -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ═══ App Script ═══ -->
+  <script src="app.js"></script>
+
+</body>
+
+</html>
