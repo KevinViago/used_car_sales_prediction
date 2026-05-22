@@ -39,6 +39,17 @@
   <!-- ═══ Main Content ═══ -->
   <div class="container">
 
+    <!-- ── Top Bar (User + Logout) ── -->
+    <div class="top-bar" id="top-bar">
+      <div class="top-bar-user">
+        <div class="avatar" id="user-avatar">D</div>
+        <span>Selamat datang, <strong id="user-name">demo</strong></span>
+      </div>
+      <button class="btn-logout" id="btn-logout" onclick="logout()">
+        🚪 Keluar
+      </button>
+    </div>
+
     <!-- ── Hero ── -->
     <section class="glass hero">
       <div class="hero-badge">
@@ -165,6 +176,29 @@
 
   <!-- ═══ Toast ═══ -->
   <div class="toast" id="toast"></div>
+
+  <!-- ═══ Login Check + Logout ═══ -->
+  <script>
+    // Redirect to login if not authenticated
+    if (sessionStorage.getItem('loggedIn') !== 'true') {
+      window.location.href = 'login.html';
+    }
+
+    // Display username
+    (function () {
+      const username = sessionStorage.getItem('username') || 'demo';
+      const nameEl = document.getElementById('user-name');
+      const avatarEl = document.getElementById('user-avatar');
+      if (nameEl) nameEl.textContent = username;
+      if (avatarEl) avatarEl.textContent = username.charAt(0).toUpperCase();
+    })();
+
+    function logout() {
+      sessionStorage.removeItem('loggedIn');
+      sessionStorage.removeItem('username');
+      window.location.href = 'login.html';
+    }
+  </script>
 
   <!-- ═══ App Script ═══ -->
   <script src="app.js"></script>

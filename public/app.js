@@ -601,7 +601,7 @@
     const keys = ['naive_bayes', 'decision_tree', 'knn'];
     const metrics = ['accuracy', 'precision', 'recall', 'f1_score'];
     const metricLabels = ['Akurasi', 'Precision', 'Recall', 'F1-Score'];
-    const colors = ['#6366f1', '#10b981', '#06b6d4', '#8b5cf6'];
+    const colors = ['#d97706', '#10b981', '#059669', '#ea580c'];
 
     const datasets = metrics.map((metric, i) => ({
       label: metricLabels[i],
@@ -628,7 +628,7 @@
             backgroundColor: 'rgba(17, 24, 39, 0.95)',
             titleColor: '#f1f5f9',
             bodyColor: '#94a3b8',
-            borderColor: 'rgba(99,102,241,0.2)',
+            borderColor: 'rgba(217,119,6,0.2)',
             borderWidth: 1,
             cornerRadius: 10,
             padding: 12,
@@ -638,7 +638,7 @@
         scales: {
           y: {
             beginAtZero: true, max: 100,
-            grid: { color: 'rgba(99,102,241,0.06)', drawBorder: false },
+            grid: { color: 'rgba(217,119,6,0.06)', drawBorder: false },
             ticks: { color: '#64748b', font: { size: 11, family: 'Inter' }, callback: v => v + '%' }
           },
           x: {
