@@ -16,14 +16,29 @@ Website ini menampilkan hasil prediksi dari **3 algoritma machine learning** yan
 - ✅ **Cepat Terjual** — terjual dalam ≤30 hari
 - ⏳ **Lama Terjual** — terjual dalam >30 hari
 
+## 🔐 Halaman Login
+
+Website dilengkapi dengan halaman login untuk keamanan akses.
+
+**Akun Demo untuk Pengujian:**
+
+| Field | Nilai |
+|-------|-------|
+| Username | `demo` |
+| Password | `demo` |
+
+> Kredensial demo juga ditampilkan langsung di halaman login agar penguji dapat langsung mencoba.
+
 ## 📁 Struktur File
 
 ```
-website_mobil/
+used_car_sales_prediction/
 ├── public/
-│   ├── index.html          # Halaman utama
-│   ├── style.css           # Glassmorphism dark theme
-│   ├── app.js              # Implementasi NB, DT, KNN (pure JS)
+│   ├── login.html         # Halaman login (username & password)
+│   ├── index.html         # Halaman utama (prediksi)
+│   ├── style.css          # Tema warm amber/gold automotive
+│   ├── app.js             # Implementasi NB, DT, KNN (pure JS)
+│   ├── dataset_mobil.csv  # Dataset untuk cascading dropdown
 │   └── models/
 │       └── model_data.json # Data model (dari notebook)
 ├── notebook_prediksi_mobil_bekas.ipynb  # Google Colab notebook
@@ -31,6 +46,22 @@ website_mobil/
 ├── vercel.json                          # Konfigurasi Vercel
 └── README.md
 ```
+
+## 🎨 Desain & Tema
+
+Website menggunakan tema **Warm Automotive** dengan palet warna:
+
+| Warna | Hex | Kegunaan |
+|-------|-----|----------|
+| 🟠 Amber | `#d97706` | Aksen utama, tombol, badge |
+| 🔶 Orange | `#ea580c` | Gradient, aksen sekunder |
+| 🟢 Emerald | `#059669` | Aksen hijau, indikator sukses |
+
+Fitur desain:
+- **Dark glassmorphism** dengan backdrop blur
+- **Animated background blobs** untuk kesan dinamis
+- **Micro-animations** pada hover dan transisi
+- **Responsive layout** untuk desktop & mobile
 
 ## 🔬 Dataset
 
@@ -78,6 +109,8 @@ npx serve public
 
 Buka browser di `http://localhost:3000`
 
+> Halaman pertama yang muncul adalah **login.html**. Masukkan username `demo` dan password `demo` untuk mengakses sistem prediksi.
+
 ### 4. Deploy ke Vercel
 
 ```bash
@@ -90,8 +123,10 @@ vercel
 
 ## 🛠 Teknologi
 
-- **Frontend:** HTML, CSS (Glassmorphism), Vanilla JavaScript
+- **Frontend:** HTML, CSS (Dark Glassmorphism), Vanilla JavaScript
+- **Tema:** Warm Amber/Gold Automotive (non-AI look)
 - **ML Engine:** Pure JavaScript (no TensorFlow.js needed)
+- **Autentikasi:** Session-based (sessionStorage)
 - **Notebook:** Python, scikit-learn, pandas, matplotlib, seaborn
 - **Deployment:** Vercel (static site)
 - **Font:** Inter (Google Fonts)
