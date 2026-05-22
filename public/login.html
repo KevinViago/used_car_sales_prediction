@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Prediksi Mobil Bekas</title>
+  <meta name="description" content="Login ke sistem prediksi penjualan mobil bekas menggunakan Machine Learning.">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Shared Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="login-body">
+
+  <!-- ═══ Animated Background ═══ -->
+  <div class="bg-blobs">
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+  </div>
+
+  <!-- ═══ Login Container ═══ -->
+  <div class="login-wrapper">
+
+    <!-- Left Panel — Branding -->
+    <div class="login-branding">
+      <div class="brand-content">
+        <div class="brand-icon">🚗</div>
+        <h1>Prediksi Mobil Bekas</h1>
+        <p>Sistem klasifikasi kecepatan penjualan mobil bekas menggunakan perbandingan algoritma <strong>Naive Bayes</strong>, <strong>Decision Tree</strong>, dan <strong>KNN</strong>.</p>
+        <div class="brand-features">
+          <div class="brand-feature">
+            <span class="feature-icon">⚡</span>
+            <span>Prediksi Real-time</span>
+          </div>
+          <div class="brand-feature">
+            <span class="feature-icon">📊</span>
+            <span>3 Algoritma ML</span>
+          </div>
+          <div class="brand-feature">
+            <span class="feature-icon">🔒</span>
+            <span>Proses di Browser</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel — Login Form -->
+    <div class="login-form-panel">
+      <div class="login-form-container">
+        <div class="login-header">
+          <h2>Selamat Datang</h2>
+          <p>Masuk untuk mengakses sistem prediksi</p>
+        </div>
+
+        <form id="login-form" autocomplete="off">
+          <div class="login-field">
+            <label for="login-username">Username</label>
+            <div class="input-wrapper">
+              <span class="input-icon">👤</span>
+              <input type="text" id="login-username" placeholder="Masukkan username" required>
+            </div>
+          </div>
+
+          <div class="login-field">
+            <label for="login-password">Password</label>
+            <div class="input-wrapper">
+              <span class="input-icon">🔑</span>
+              <input type="password" id="login-password" placeholder="Masukkan password" required>
+            </div>
+          </div>
+
+          <div id="login-error" class="login-error" style="display:none;">
+            <span>⚠️</span>
+            <span id="login-error-text">Username atau password salah</span>
+          </div>
+
+          <button type="submit" class="btn-login" id="btn-login">
+            <span class="btn-text">Masuk</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </form>
+
+        <!-- Demo Credentials Info -->
+        <div class="demo-credentials">
+          <div class="demo-title">
+            <span class="demo-icon">💡</span>
+            Akun Demo untuk Pengujian
+          </div>
+          <div class="demo-fields">
+            <div class="demo-field">
+              <span class="demo-label">Username</span>
+              <span class="demo-value" id="demo-user">demo</span>
+              <button class="demo-copy" onclick="copyText('demo','demo-user')" title="Salin">📋</button>
+            </div>
+            <div class="demo-field">
+              <span class="demo-label">Password</span>
+              <span class="demo-value" id="demo-pass">demo</span>
+              <button class="demo-copy" onclick="copyText('demo','demo-pass')" title="Salin">📋</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Check if already logged in
+    if (sessionStorage.getItem('loggedIn') === 'true') {
+      window.location.href = 'index.html';
+    }
+
+    const loginForm = document.getElementById('login-form');
+    const loginError = document.getElementById('login-error');
+    const loginErrorText = document.getElementById('login-error-text');
+
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const username = document.getElementById('login-username').value.trim();
+      const password = document.getElementById('login-password').value.trim();
+
+      if (username === 'demo' && password === 'demo') {
+        sessionStorage.setItem('loggedIn', 'true');
+        sessionStorage.setItem('username', username);
+
+        // Success animation
+        const btn = document.getElementById('btn-login');
+        btn.classList.add('success');
+        btn.querySelector('.btn-text').textContent = '✅ Berhasil!';
+
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 600);
+      } else {
+        loginError.style.display = 'flex';
+        loginErrorText.textContent = 'Username atau password salah. Gunakan akun demo.';
+        loginForm.classList.add('shake');
+        setTimeout(() => loginForm.classList.remove('shake'), 500);
+      }
+    });
+
+    function copyText(text, elementId) {
+      navigator.clipboard.writeText(text).then(() => {
+        const el = document.getElementById(elementId);
+        const original = el.textContent;
+        el.textContent = '✓ Disalin!';
+        el.style.color = 'var(--accent-success)';
+        setTimeout(() => {
+          el.textContent = original;
+          el.style.color = '';
+        }, 1200);
+      });
+    }
+  </script>
+
+</body>
+
+</html>
